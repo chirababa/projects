@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+<div class="backgrd" style="background-image: url('assets/login/images/health_care.jpg')">
+<div class="caregiverPage">
+<div class="container">
+<div class="button-div">
+  <p style="color:red;text-align:center">{{messageAlert}}</p>
+  <button type="submit" class="btn btn-primary" (click)="logout()">Logout</button>
+</div>
+<div class= "table-div">
+  <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" style = "color:black">Name</th>
+      <th scope="col" style = "color:black">Email</th>
+      <th scope="col" style = "color:black">Birthdate</th>
+      <th scope="col" style = "color:black">Gender</th>
+      <th scope="col" style = "color:black">Address</th>
+      <th scope="col" style = "color:black">Medical Record</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor = "let p of patient">
+      <td style = "color:black">{{p.user.name}}</td>
+      <td style = "color:black">{{p.user.email}}</td>
+      <td style = "color:black">{{p.user.birthdate}}</td>
+      <td style = "color:black">{{p.user.gender}}</td>
+      <td style = "color:black">{{p.user.address}}</td>
+      <td style = "color:black">{{p.medicalRecord}}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+  </body>
+</html>

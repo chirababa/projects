@@ -1,0 +1,19 @@
+<div class="container-fluid">
+  <mat-tab-group style="margin-left: 40px">
+    <mat-tab label="Patient">
+      <app-doctor-patient></app-doctor-patient>
+    </mat-tab>
+    <mat-tab label="Caregiver">
+      <app-doctor-caregiver></app-doctor-caregiver>
+    </mat-tab>
+    <mat-tab label="Medication">
+      <app-doctor-medication></app-doctor-medication>
+    </mat-tab>
+    <mat-tab label="Medication plan">
+      <app-doctor-medication-plan></app-doctor-medication-plan>
+    </mat-tab>
+    <mat-tab label="Logout">
+        <button style="margin-right: 30px" color="warn" (click)="logout()">Logout</button>
+    </mat-tab>
+  </mat-tab-group>
+</div>

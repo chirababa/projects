@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <header id="backgrd" style="background-image: url('assets/login/images/health_care.jpg')">
+    <div class="doctorPageAddPatient">
+
+    <div class="container">
+
+      <p>
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseRecipe" aria-expanded="false" aria-controls="collapseRecipe">
+      Add Medication
+    </button>
+    </p>
+    <div class="collapse" id="collapseRecipe">
+    <div class="card card-body">
+      <form>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputUsername">Medication id</label>
+        <input type="text" class="form-control" id="inputMedId" [(ngModel)] = "medicationId" name="inputMedId">
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputName">Medication Plan id</label>
+      <input type="text" class="form-control" id="inputMPid" [(ngModel)] = "medicationPlanId" name="inputMPid">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputITM">Intake Moments</label>
+      <input type="text" class="form-control" id="inputITM" [(ngModel)] = "medicationRecipe.intakeMoments" name="inputITM">
+    </div>
+
+    <div class="form-group col-md-6">
+        <label for="inputDosage">Dosage</label>
+        <input type="text" class="form-control" id="inputDosage" [(ngModel)] = "medicationRecipe.dosage" name="inputDosage">
+    </div>
+
+    <div class="form-group col-md-11">
+      <button type="submit" class="btn btn-primary" (click)="addMedicationRecipe()">Add</button>
+    </div>
+    </form>
+    </div>
+    </div>
+
+
+    <div class="patientTable">
+    <div class="container">
+      <table class="table table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th></th>
+          <th scope="col" style = "color:black">Username</th>
+          <th scope="col" style = "color:black">Name</th>
+          <th scope="col" style = "color:black">Email</th>
+          <th scope="col" style = "color:black">Birthdate</th>
+          <th scope="col" style = "color:black">Gender</th>
+          <th scope="col" style = "color:black">Address</th>
+          <th scope="col" style = "color:black">Medical Record</th>
+          <th scope="col" style = "color:black"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor = "let p of patientsByDoctor;let i = index">
+          <td>
+            <button class="btn btn-primary" type="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample" attr.data-target="#{{i}}">
+              View Plan
+            </button>
+            <div class="collapse" id="{{i}}">
+            <div class="card card-body">
+              <table class="table table-hover">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col" style = "color:black">IdPlan</th>
+                  <th scope="col" style = "color:black">StartTimePlan</th>
+                  <th scope="col" style = "color:black">EndTimePlan</th>
+                  <th scope="col" style = "color:black">Medication</th>
+                  <th scope="col" style = "color:black">Intake Moments</th>
+                  <th scope="col" style = "color:black">Dosage</th>
+                </tr>
+              </thead>
+              <tbody>
+                <ng-template ngFor let-parent [ngForOf]="p.medicationPlanList" >
+                <tr *ngFor =  "let r of parent.medicationRecipeList">
+                    <td style = "color:black">{{parent.idMedicationPlan}}</td>
+                    <td style = "color:black">{{parent.startTime}}</td>
+                    <td style = "color:black">{{parent.endTime}}</td>
+                    <td style = "color:black">{{r.medication.name}}</td>
+                    <td style = "color:black">{{r.intakeMoments}}</td>
+                    <td style = "color:black">{{r.dosage}}</td>
+                </tr>
+                </ng-template>
+              </tbody>
+            </table>
+            </div>
+            </div>
+          </td>
+          <td style = "color:black">{{p.user.username}}</td>
+          <td style = "color:black">{{p.user.name}}</td>
+          <td style = "color:black">{{p.user.email}}</td>
+          <td style = "color:black">{{p.user.birthdate}}</td>
+          <td style = "color:black">{{p.user.gender}}</td>
+          <td style = "color:black">{{p.user.address}}</td>
+          <td style = "color:black">{{p.medicalRecord}}</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    </div>
+  </div>
+  </div>
+  </header>
+</body>
+</html>

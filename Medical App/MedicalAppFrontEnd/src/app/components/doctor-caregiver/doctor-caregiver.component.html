@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <header id="backgrd" style="background-image: url('assets/login/images/health_care.jpg')">
+    <div class="doctoPageAddCaregiver">
+      
+<div class="container">
+  <p>
+<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseCaregiver" aria-expanded="false" aria-controls="collapseCaregiver">
+  Add Caregiver
+</button>
+</p>
+<div class="collapse" id="collapseCaregiver">
+<div class="card card-body">
+  <form>
+<div class="form-row">
+  <div class="form-group col-md-6">
+    <label for="inputUsername">Username</label>
+    <input type="text" class="form-control" id="inputUsernameC" placeholder="Username" [(ngModel)] = "caregiverUser.username" name="username">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="inputPassword4">Password</label>
+    <input type="password" class="form-control" id="inputPassword4C" placeholder="Password"  [(ngModel)] = "caregiverUser.password" name="pass">
+  </div>
+</div>
+<div class="form-group col-md-6">
+  <label for="inputName">Name</label>
+  <input type="text" class="form-control" id="inputNameC" placeholder="Name" [(ngModel)] = "caregiverUser.name" name="name">
+</div>
+<div class="form-group col-md-6">
+  <label for="inputEmail">Email</label>
+  <input type="text" class="form-control" id="inputEmailC" placeholder="Email" [(ngModel)] = "caregiverUser.email" name="email">
+</div>
+<div class="form-row">
+  <div class="form-group col-md-4">
+    <label for="inputBirthdate">Birthdate</label>
+    <input type="date" class="form-control" id="inputBirthdateC" [(ngModel)] = "caregiverUser.birthdate" name="birth">
+  </div>
+  <div class="form-group col-md-4">
+    <label for="inputGender">Gender</label>
+    <select id="inputGenderC" class="form-control" [(ngModel)] = "caregiverUser.gender" name="gender">
+      <option selected>Male</option>
+      <option>Female</option>
+    </select>
+  </div>
+  <div class="form-group col-md-12">
+    <label for="inputAddress">Address</label>
+    <input type="text" class="form-control" id="inputAddressC" [(ngModel)] = "caregiverUser.address" name="address">
+  </div>
+</div>
+
+<div class="form-group col-md-11">
+  <button type="submit" class="btn btn-primary" (click)="addCaregiver()">Sign up</button>
+    <p style="color:black;text-align:center">{{errorMessageSingUpCareGiver}}</p>
+</div>
+</form>
+</div>
+</div>
+
+<div class="patientTable">
+<div class="container">
+  <table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" style = "color:black">Username</th>
+      <th scope="col" style = "color:black">Name</th>
+      <th scope="col" style = "color:black">Email</th>
+      <th scope="col" style = "color:black">Birthdate</th>
+      <th scope="col" style = "color:black">Gender</th>
+      <th scope="col" style = "color:black">Address</th>
+      <th scope="col" style = "color:black"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor = "let c of caregiver">
+      <td contenteditable='true' (input)="onRowClickCareGiver($event,'username',c)" style = "color:black">{{c.username}}</td>
+      <td contenteditable='true' (input)="onRowClickCareGiver($event,'name',c)" style = "color:black">{{c.name}}</td>
+      <td contenteditable='true' (input)="onRowClickCareGiver($event,'email',c)" style = "color:black">{{c.email}}</td>
+      <td contenteditable='true' (input)="onRowClickCareGiver($event,'birthdate',c)" style = "color:black">{{c.birthdate}}</td>
+      <td contenteditable='true' (input)="onRowClickCareGiver($event,'gender',c)" style = "color:black">{{c.gender}}</td>
+      <td contenteditable='true' (input)="onRowClickCareGiver($event,'address',c)" style = "color:black">{{c.address}}</td>
+      <td>
+        <button type="button" class="btn btn-danger" (click)="deleteUser(c)">Delete</button>
+        <button type="button" class="btn btn-success" (click)="updateCaregiver()">Edit</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</header>
+</body>
+</html>

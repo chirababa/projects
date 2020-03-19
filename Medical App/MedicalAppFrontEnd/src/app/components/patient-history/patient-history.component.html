@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <header id="backgrd" style="background-image: url('assets/login/images/health_care.jpg')">
+    <div class="historyPage">
+    <div class="container">
+    <div class="chart">
+      <google-chart [data]="activityChart"></google-chart>
+    </div>
+    <div class="activityTable">
+    <div class="container">
+      <table class="table table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col" style = "color:black">Activity</th>
+          <th scope="col" style = "color:black">Start Time</th>
+          <th scope="col" style = "color:black">End Time</th>
+          <th scope="col" style = "color:black"></th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr *ngFor = "let a of activitiesAnomalous;let i = index;let j = index">
+          <td style = "color:black">{{a.activityName}}</td>
+          <td style = "color:black">{{a.startTime}}</td>
+          <td style = "color:black">{{a.endTime}}</td>
+          <td style = "color:black">
+
+            <button class="btn btn-primary" type="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample" attr.data-target="#{{i}}">
+              Recommandation
+            </button>
+
+            <div class="collapse" id="{{i}}">
+            <div class="card card-body">
+            <div class="form-row">
+              <br>
+              <div class="form-group col-md-8">
+                <input type="text" class="form-control" id="recommendation" placeholder="Recommendation" [(ngModel)] = "recommendation" name="recommendation">
+              </div>
+
+              <div class="form-group col-md-2">
+                <button type="button" class="btn btn-danger" (click)="addRecommendation(a.idMonitorActivity)">Add</button>
+              </div>
+            </div>
+            </div>
+            </div>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    <table class="table table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col" style = "color:black">Medication Name</th>
+        <th scope="col" style = "color:black">Taken/NotTaken</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr *ngFor = "let a of medicationResponse">
+        <td style = "color:black">{{a}}</td>
+        <td style = "color:black">NotTaken</td>
+      </tr>
+    </tbody>
+  </table>
+    </div>
+    </div>
+  </div>
+  </div>
+  </header>
+</body>
+</html>

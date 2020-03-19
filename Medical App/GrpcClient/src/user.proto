@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+option java_package = "grpc";
+
+service user{
+    rpc login(LoginRequest) returns (LoginResponse);
+    rpc getMedicationPlan(MedicationPlanRequest) returns (MedicationPlanResponse);
+    rpc publishTaken(PublishTakenRequest) returns (PublishTakenResponse);
+    rpc publishNotTaken(PublishNotTakenRequest) returns (PublishTakenResponse);
+}
+
+message LoginRequest{
+    string username = 1 ;
+    string password = 2 ;
+}
+
+message APIResponse{
+    string responsemessage = 1;
+    int32  responseCode  = 2;
+}
+
+message LoginResponse{
+    string idPatient =1;
+    string responseMessage = 2;
+}
+
+message MedicationPlanRequest{
+    string idPatient = 1;
+}
+
+message Medication{
+    string name =1;
+    string sideEffects =2;
+}
+
+message MedicationRecipe{
+    Medication medication =1;
+    string intake = 2;
+    string dosage = 3;
+    string idMedicationRecipe = 4;
+    string taken = 5;
+}
+
+message MedicationPlan{
+    string startTime = 1;
+    string endTime = 2;
+    repeated MedicationRecipe medicationRecipe  = 3;
+}
+
+message MedicationPlanResponse{
+    repeated MedicationPlan medicationPlan = 1;
+}
+
+message PublishTakenRequest{
+    string idMedicationRecipe = 1;
+    string reset = 2;
+}
+
+message PublishTakenResponse{
+    string responseTaken = 1;
+}
+
+message PublishNotTakenRequest{
+    repeated string responseNotTaken = 1;
+    string patientUsername = 2;
+}

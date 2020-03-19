@@ -1,0 +1,105 @@
+<div class="container-fluid">
+  <mat-tab-group style="margin-left: 40px">
+    <mat-tab label="Patient">
+      <app-doctor></app-doctor>
+    </mat-tab>
+    <mat-tab label="Caregiver">
+    </mat-tab>
+    <mat-tab label="Medication plan">
+    </mat-tab>
+    <mat-tab label="Medication">
+    </mat-tab>
+    <mat-tab label="Pacient manipulation">
+    </mat-tab>
+    <mat-tab label="Logout">
+        <button mat-raised-button style="margin-right: 30px" color="warn" (click)="logout()">Logout</button>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>baieti de oras</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <header id="backgrd" style="background-image: url('assets/login/images/health_care.jpg')">
+    <div class="doctorPageAddPatient">
+
+<div class="container">
+  <p>
+<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseMedication" aria-expanded="false" aria-controls="collapseExample">
+  Add Medication
+</button>
+</p>
+<div class="collapse" id="collapseMedication">
+<div class="card card-body">
+  <form>
+<div class="form-row">
+  <div class="form-group col-md-6">
+    <label for="inputMed">Name</label>
+    <input type="text" class="form-control" id="inputMed" placeholder="Medication name" [(ngModel)] = "medicationInsert.name" name="medicationName">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="inputDosage">Dosage</label>
+    <input type="text" class="form-control" id="inputDosage" placeholder="Dosage"  [(ngModel)] = "medicationInsert.dosage" name="dosage">
+  </div>
+
+  <div class="form-group col-md-11">
+    <label for="inputEffects">Side Effects</label>
+    <input type="text" class="form-control" id="inputEffects" placeholder="Side Effect"  [(ngModel)] = "medicationInsert.sideEffects" name="sideEffects">
+  </div>
+</div>
+
+<div class="form-group col-md-11">
+  <button type="submit" class="btn btn-primary" (click)="addMedication()">Add</button>
+    <p style="color:black;text-align:center">{{errorMessageMedication}}</p>
+</div>
+
+</form>
+</div>
+</div>
+
+<div class="patientTable">
+<div class="container">
+  <table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" style = "color:black">Id Medication</th>
+      <th scope="col" style = "color:black">Name</th>
+      <th scope="col" style = "color:black">Dosage</th>
+      <th scope="col" style = "color:black">Side Effect</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor = "let m of medication">
+      <td style = "color:black">{{m.idMedication}}</td>
+      <td contenteditable='true' (input)="onRowClickMedication($event,'name',m)" style = "color:black">{{m.name}}</td>
+      <td contenteditable='true' (input)="onRowClickMedication($event,'dosage',m)" style = "color:black">{{m.dosage}}</td>
+      <td contenteditable='true' (input)="onRowClickMedication($event,'sideEffects',m)" style = "color:black">{{m.sideEffects}}</td>
+      <td>
+        <button type="button" class="btn btn-danger" (click)="deleteMedication(m)">Delete</button>
+        <button type="button" class="btn btn-success" (click)="updateMedication(m)">Edit</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+
+    </div>
+
+    </header>
+</body>
+</html>

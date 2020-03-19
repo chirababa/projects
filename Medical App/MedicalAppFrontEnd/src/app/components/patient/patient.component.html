@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <header id="backgrd" style="background-image: url('assets/login/images/health_care.jpg')">
+    <div class="patientPage">
+    <div class="container">
+      <div id="user-profile-2" class="user-profile">
+            <div class="tab-content no-border padding-24">
+              <div id="home" class="tab-pane in active">
+                <div class="row">
+
+                  <div class="col-xs-12 col-sm-9">
+                    <h4 class="blue">
+                      <span class="middle" style = "color:black">{{patient.user.name}}</span>
+                    </h4>
+
+                    <div class="profile-user-info">
+                      <div class="profile-info-row">
+                        <div class="profile-info-name" style = "color:black"> Username: {{patient.user.username}}  </div>
+                      </div>
+
+                      <div class="profile-info-row">
+                        <div class="profile-info-name" style = "color:black"> Email: {{patient.user.email}} </div>
+                      </div>
+
+                      <div class="profile-info-row">
+                        <div class="profile-info-name" style = "color:black"> Birthdate: {{patient.user.birthdate}} </div>
+                      </div>
+
+                      <div class="profile-info-row">
+                        <div class="profile-info-name" style = "color:black"> Gender: {{patient.user.gender}} </div>
+                      </div>
+
+                      <div class="profile-info-row">
+                        <div class="profile-info-name" style = "color:black"> Address: {{patient.user.address}} </div>
+                      </div>
+
+                    </div>
+
+                    <div class="hr hr-8 dotted"></div>
+                  </div>
+                </div>
+      </div>
+      </div>
+      </div>
+    <div class = "button-logout">
+    <button type="button" class="btn btn-primary" (click)="logout()">Logout</button>
+    </div>
+    <div class="patientTable">
+    <div class="container">
+
+              <table class="table table-hover">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col" style = "color:black">Medication Plan</th>
+                  <th scope="col" style = "color:black">Start Time</th>
+                  <th scope="col" style = "color:black">End Time</th>
+                  <th scope="col" style = "color:black">Medication</th>
+                  <th scope="col" style = "color:black">Intake Moments</th>
+                  <th scope="col" style = "color:black">Dosage</th>
+                </tr>
+              </thead>
+              <tbody>
+                <ng-template ngFor let-parent [ngForOf]="patient.medicationPlanList" >
+                <tr *ngFor =  "let r of parent.medicationRecipeList">
+                    <td style = "color:black">{{parent.idMedicationPlan}}</td>
+                    <td style = "color:black">{{parent.startTime}}</td>
+                    <td style = "color:black">{{parent.endTime}}</td>
+                    <td style = "color:black">{{r.medication.name}}</td>
+                    <td style = "color:black">{{r.intakeMoments}}</td>
+                    <td style = "color:black">{{r.dosage}}</td>
+                </tr>
+                </ng-template>
+              </tbody>
+            </table>
+    </div>
+    </div>
+    <angular-billboard *ngFor="let chart of charts" [chart]="chart">
+    </angular-billboard>
+  </div>
+  </div>
+  </header>
+</body>
+</html>
